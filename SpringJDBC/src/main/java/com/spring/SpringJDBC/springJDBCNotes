@@ -1,0 +1,42 @@
+Spring JDBC
+1. Spring simplifies a lot of Java technologies, one of them being JDBC
+2. With JDBC, we write a lot of boilerplate code 
+	a. create connection
+	b. create statement/prepared statement
+	c. set the values
+	d. execute the statement
+	e. close the statement
+	f. close the connection 
+3. This boilerplate code is repeated many times across the application 
+4. Spring JDBC tries to remove as much of this boilerplate code as possible, and 
+   simplify the process 
+5. Spring JDBC uses JDBCTemplate to achieve this goal 
+6. JDBCTemplate combines JDBC technology with the Template design pattern 
+7. The template carries the common code (boilerplate code)
+8. To use JDBCTemplate, you first provide it a dataSource (using the DriverManagerDataSource 
+   implementation class)
+9. The DriverManagerDataSource class takes four parameters
+	a. driverClassName
+	b. url
+	c. userName
+	d. password
+10. JDBCTemplate has these methods 
+	a. update(String SQL) - peforms DML statements (insert, update, delete)
+	b. queryForObject - returns one record from database table
+	c. query - returns multiples records from database table 
+		1. Both query methods use RowMapper, a Spring interface that we will need 
+		   to implement 
+		2. It maps a JDBC resultSet to an object that we create
+			
+
+How to use JDBCTemplate (2 steps)
+1. Configure beans 
+	a. Configure DriverManagerDataSource - by providing it the driverClassname, url, userName, 
+	   password the database 
+    b. Configure the JDBCTemplate - inject the dataSource created in step 1
+	c. These are two separate beans. JDBCTemplate bean has a dependency dataSource, that will be 
+      injected for JDBCTemplate to function 
+2. Create Test class and use the JDBCTemplate 
+
+
+
